@@ -14,7 +14,7 @@ export default function Frame({wallPosition, wallHeight})
       wallPosition[2] + 0.15]; 
 
     const frame2Position = [
-      wallPosition[0] + 2.8, 
+      wallPosition[0] + 2.75, 
       wallPosition[1] + wallHeight / 4 - 1, 
       0];
 
