@@ -11,7 +11,7 @@ export default function Frame({wallPosition, wallHeight})
     const frame1Position = [
       wallPosition[0] + 0.7, 
       wallPosition[1] + wallHeight / 4 - 0.2, 
-      wallPosition[2] + 0.27]; 
+      wallPosition[2] + 0.15]; 
 
     const frame2Position = [
       wallPosition[0] + 2.8, 
@@ -21,9 +21,9 @@ export default function Frame({wallPosition, wallHeight})
     const frame3Position = [
         wallPosition[0] - 1.5, 
         wallPosition[1] + wallHeight / 4 - 0.2, 
-        wallPosition[2] + 0.1]; 
+        wallPosition[2] + 0.25]; 
 
-      console.log(frame1Position)
+      console.log(frame2Position)
 
     return (
       <>

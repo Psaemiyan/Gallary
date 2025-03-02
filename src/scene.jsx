@@ -6,8 +6,7 @@ export default function Scene({ width = 6, height = 4, depth = 5, thickness = 0.
 
   return (
     <>
-        {/* <group position={[0, -1.2, 0]} rotation={[0, Math.PI / 6, 0]}> */}
-        <group>
+        <group position={[0, -1.2, 0]} rotation={[0, Math.PI / 6, 0]}>
             {/* Floor */}
             <mesh receiveShadow position={[0, -thickness / 2, 0]}>
                 <boxGeometry args={[width, thickness, depth]} />
