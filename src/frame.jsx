@@ -4,7 +4,10 @@ import useStore from "./useStore";
 export default function Frame({ wallPosition, wallHeight }) {
   const { nodes } = useGLTF("./wall_pictures.glb");
   const setSelectedFrame = useStore((state) => state.setSelectedFrame);
+  const toggleZoom = useStore((state) => state.toggleZoom);
+  const zoomedInFrame = useStore((state) => state.zoomedInFrame); 
 
+  
   const framePositions = {
     1: [
       wallPosition[0] + 0.7,
@@ -23,10 +26,13 @@ export default function Frame({ wallPosition, wallHeight }) {
     ],
   };
 
+
   const handleClick = (frameId) => {
-    setSelectedFrame(frameId); // Store only frameId
-    console.log(`Frame ${frameId} clicked`);
+    setSelectedFrame(frameId);  // Set the clicked frame as the selected one
+    toggleZoom(frameId);  // Toggle zoom for the clicked frame
+    console.log("Zoom toggled for frame", frameId);
   };
+
 
   return (
     <>
