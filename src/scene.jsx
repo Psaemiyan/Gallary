@@ -1,8 +1,14 @@
 import React from "react";
 import Frame from "./frame";
+import { useTexture } from "@react-three/drei";
 
 export default function Scene({ width = 6, height = 4, depth = 5, thickness = 0.15 }) {
   const wallPosition = [0, height / 2, -depth / 2 + thickness / 2];
+
+  const floorTextures = useTexture({
+    map: './wood_floor.blend/textures/wood_floor_diff_4k.jpg',
+    displacementMap: './wood_floor.blend/textures/wood_floor_disp_4k.png'
+  })
 
   return (
     <>
@@ -10,21 +16,24 @@ export default function Scene({ width = 6, height = 4, depth = 5, thickness = 0.
             {/* Floor */}
             <mesh receiveShadow position={[0, -thickness / 2, 0]}>
                 <boxGeometry args={[width, thickness, depth]} />
-                <meshBasicMaterial color="#121417" />
-
+                <meshStandardMaterial
+                {...floorTextures}  
+                displacementScale={0}  
+                roughness={0.8}          
+                />
             </mesh>
 
             {/* Wall 1 */}
             <mesh castShadow receiveShadow position={[0, height / 2, -depth / 2 + thickness / 2]}>
                 <boxGeometry args={[width, height, thickness]} />
-                <meshBasicMaterial color="#0F1E30" />
+                <meshBasicMaterial color="#1E3728" />
 
             </mesh>
 
             {/* Wall 2 */}
             <mesh castShadow receiveShadow position={[width / 2 - thickness / 2, height / 2, 0]}>
                 <boxGeometry args={[thickness, height, depth]} />
-                <meshBasicMaterial color="#0F1E30" />
+                <meshBasicMaterial color="#112620" />
             </mesh>
 
             <Frame wallPosition={wallPosition} wallHeight={height} />

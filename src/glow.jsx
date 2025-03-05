@@ -27,7 +27,7 @@ export default function Glow() {
         <primitive object={createGlowMaterial()} />
       </mesh>
 
-      <mesh position={[-2.2, 1.6, -1.3]} rotation={[0, Math.PI / 6, 0]} renderOrder={-1}>
+      <mesh position={[-2.175, 1.6, -1.3]} rotation={[0, Math.PI / 6, 0]} renderOrder={-1}>
         <planeGeometry args={[2, 1.4]} />
         <primitive object={createGlowMaterial()} />
       </mesh>

@@ -5,7 +5,6 @@ export default function Frame({ wallPosition, wallHeight }) {
   const { nodes } = useGLTF("./wall_pictures.glb");
   const setSelectedFrame = useStore((state) => state.setSelectedFrame);
   const toggleZoom = useStore((state) => state.toggleZoom);
-  const zoomedInFrame = useStore((state) => state.zoomedInFrame); 
 
   
   const framePositions = {
