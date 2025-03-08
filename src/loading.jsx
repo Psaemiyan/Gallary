@@ -10,22 +10,22 @@ export default function Loading() {
   const [uAlpha, setUAlpha] = useState(1);  
 
   useEffect(() => {
-    // console.log('Loading state:', loading);
     if (!loading) {
-      gsap.to({ uAlpha: 1 }, {
-        uAlpha: 0, 
-        duration: 1,  
-        onUpdate: function () {
-          setUAlpha(this.targets()[0].uAlpha);  
+      gsap.to(uAlpha, {
+        value: 0, 
+        duration: 2,  
+        ease: "power2.out",
+        onUpdate: () => {
+          setUAlpha(gsap.getProperty(uAlpha, "uAlpha"));
         },
         onComplete: () => {
-          setVisible(false); // Remove the mesh entirely
+          setVisible(false); 
         }
       });
     }
-  }, [loading]);  
+  }, [loading, uAlpha]);  
 
-  if (!visible) return null; // Remove component when loading is done
+  if (!visible) return null; 
 
   return (
     <mesh>
@@ -39,3 +39,4 @@ export default function Loading() {
     </mesh>
   );
 }
+

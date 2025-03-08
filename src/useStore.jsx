@@ -1,5 +1,7 @@
 import { create } from "zustand";
 import * as THREE from "three";
+
+
 const useStore = create((set) => ({
   selectedFrame: null,
   zoomedInFrame: null,  
@@ -26,6 +28,9 @@ const useStore = create((set) => ({
       set({ loading: false })
     }
   ),
+
 }));
 
+
 export default useStore;
+

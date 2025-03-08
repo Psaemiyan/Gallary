@@ -1,16 +1,10 @@
 import { useGLTF } from "@react-three/drei";
 import useStore from "./useStore";
-import { useEffect } from "react";
 
 export default function Staging() {
-  const { loadingManager } = useStore.getState();  // Access loadingManager from store
-  const { scene: plantScene } = useGLTF("./plant.glb", undefined, loadingManager);  // Pass loadingManager to useGLTF
+  const { loadingManager } = useStore.getState(); 
+  const { scene: plantScene } = useGLTF("./plant.glb", undefined, loadingManager);  
 
-//   useEffect(() => {
-//     // Manually update loading state for testing
-//     useStore.getState().setLoadingState(false, 100);
-//     console.log("Manually setting loading to false");
-//   }, []);
 
   return (
     <>
