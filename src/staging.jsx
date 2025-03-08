@@ -1,14 +1,25 @@
-import { useGLTF } from "@react-three/drei"
+import { useGLTF } from "@react-three/drei";
+import useStore from "./useStore";
+import { useEffect } from "react";
 
-export default function Staging()
-{
-    // const { scene } = useGLTF('./metal_bench.glb')
-    const { scene: plantScene } = useGLTF('./plant.glb')
+export default function Staging() {
+  const { loadingManager } = useStore.getState();  // Access loadingManager from store
+  const { scene: plantScene } = useGLTF("./plant.glb", undefined, loadingManager);  // Pass loadingManager to useGLTF
 
+//   useEffect(() => {
+//     // Manually update loading state for testing
+//     useStore.getState().setLoadingState(false, 100);
+//     console.log("Manually setting loading to false");
+//   }, []);
 
-    return <>
-    {/* <primitive object={scene} scale={.4} position={[0, -.8, -0.3]} rotation={[0, Math.PI/5.5, 0]} /> */}
-
-    <primitive object={plantScene} scale={0.3} position={[3, -1.2, .4]} rotation={[0, Math.PI /1.75, 0]} />
+  return (
+    <>
+      <primitive
+        object={plantScene}
+        scale={0.3}
+        position={[3, -1.2, 0.4]}
+        rotation={[0, Math.PI / 1.75, 0]}
+      />
     </>
+  );
 }

@@ -1,14 +1,28 @@
 import React from "react";
 import Frame from "./frame";
+import useStore from "./useStore";
 import { useTexture } from "@react-three/drei";
+import { useState, useEffect } from "react";
+import * as THREE from 'three'
 
 export default function Scene({ width = 6, height = 4, depth = 5, thickness = 0.15 }) {
   const wallPosition = [0, height / 2, -depth / 2 + thickness / 2];
+  const loadingManager = useStore().loadingManager;
+  
+  const [floorTextures, setFloorTextures] = useState(null);
 
-  const floorTextures = useTexture({
-    map: './wood_floor.blend/textures/wood_floor_diff_4k.jpg',
-    displacementMap: './wood_floor.blend/textures/wood_floor_disp_4k.png'
-  })
+  useEffect(() => {
+    const textureLoader = new THREE.TextureLoader(loadingManager);
+
+    const loadTextures = async () => {
+      const map = await textureLoader.loadAsync("./wood_floor.blend/textures/wood_floor_diff_4k.jpg");
+      const displacementMap = await textureLoader.loadAsync("./wood_floor.blend/textures/wood_floor_disp_4k.png");
+
+      setFloorTextures({ map, displacementMap });
+    };
+
+    loadTextures();
+  }, [loadingManager]);
 
   return (
     <>

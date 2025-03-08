@@ -1,12 +1,19 @@
 import { useGLTF } from "@react-three/drei";
+import { useEffect } from "react";
 import useStore from "./useStore";
 
 export default function Frame({ wallPosition, wallHeight }) {
-  const { nodes } = useGLTF("./wall_pictures.glb");
+  const { loadingManager, setLoadingState } = useStore(); 
+
+  const { nodes } = useGLTF("./wall_pictures.glb", true, loadingManager);  
+
   const setSelectedFrame = useStore((state) => state.setSelectedFrame);
   const toggleZoom = useStore((state) => state.toggleZoom);
 
-  
+  useEffect(() => {
+    setLoadingState(true, 0); // Start loading
+  }, []);
+
   const framePositions = {
     1: [
       wallPosition[0] + 0.7,
@@ -27,9 +34,8 @@ export default function Frame({ wallPosition, wallHeight }) {
 
 
   const handleClick = (frameId) => {
-    setSelectedFrame(frameId);  // Set the clicked frame as the selected one
-    toggleZoom(frameId);  // Toggle zoom for the clicked frame
-    console.log("Zoom toggled for frame", frameId);
+    setSelectedFrame(frameId); 
+    toggleZoom(frameId);  
   };
 
 

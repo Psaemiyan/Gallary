@@ -1,6 +1,5 @@
 import * as THREE from "three";
 import { ShaderMaterial } from "three";
-import { useMemo } from "react";
 import vertexShader from "./shaders/glowVertex.glsl?raw";
 import fragmentShader from "./shaders/glowFragment.glsl?raw";
 

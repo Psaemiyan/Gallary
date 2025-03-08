@@ -7,6 +7,8 @@ import Staging from "./staging";
 import Glow from "./glow";
 import CameraController from "./CameraController"; 
 import { OrbitControls } from "@react-three/drei";
+import Loading from "./loading";
+
 
 createRoot(document.getElementById("root")).render(
   <Canvas camera={{ position: [0, 2.2, 7.9], fov: 50 }}>
@@ -19,5 +21,6 @@ createRoot(document.getElementById("root")).render(
     <Scene />
     <Glow />
     <Staging />
+    <Loading />
   </Canvas>
 );

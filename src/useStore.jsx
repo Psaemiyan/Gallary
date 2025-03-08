@@ -1,20 +1,31 @@
 import { create } from "zustand";
-
+import * as THREE from "three";
 const useStore = create((set) => ({
   selectedFrame: null,
-  zoomedInFrame: null,  // Track the frame that is zoomed in
+  zoomedInFrame: null,  
+  loading: true,  
+  progress: 0,   
+
   setSelectedFrame: (frameId) => set({ selectedFrame: frameId }),
-  toggleZoom: (frameId) => set((state) => {
-    if (state.zoomedInFrame === frameId) {
-      // If the same frame is clicked again, zoom out
-      return { zoomedInFrame: null }; // Set to null to indicate zoomed out
-    } else {
-      // If it's a different frame, zoom in and update the state
-      return { zoomedInFrame: frameId }; 
+  toggleZoom: (frameId) => set((state) => ({
+    zoomedInFrame: state.zoomedInFrame === frameId ? null : frameId
+  })),
+
+  setLoadingState: (loading, progress) => { set({ loading, progress })},
+
+  loadingManager: new THREE.LoadingManager(
+    () => {
+      setTimeout(() => set({ loading: false, progress: 100 }), 100); 
+    },
+    (url, itemsLoaded, itemsTotal) => {
+      set({ progress: (itemsLoaded / itemsTotal) * 100 });
+    },
+
+    (url) => {
+      console.error(`Error loading: ${url}`);
+      set({ loading: false })
     }
-  }),
+  ),
 }));
 
 export default useStore;
-
-  
