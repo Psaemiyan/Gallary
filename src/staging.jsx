@@ -10,6 +10,7 @@ export default function Staging() {
     <>
       <primitive
         object={plantScene}
+        castShadow
         scale={0.3}
         position={[3, -1.2, 0.4]}
         rotation={[0, Math.PI / 1.75, 0]}

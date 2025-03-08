@@ -21,6 +21,6 @@ createRoot(document.getElementById("root")).render(
     <Scene />
     <Glow />
     <Staging />
-    <Loading />
+    {/* <Loading /> */}
   </Canvas>
 );

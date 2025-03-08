@@ -71,7 +71,6 @@ export default function Scene({ width = 6, height = 4, depth = 5, thickness = 0.
               roughness={0.8}
               displacementScale={0}
               metalness={0}
-              side={THREE.DoubleSide}
             />
           </mesh>
         )}
