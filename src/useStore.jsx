@@ -13,22 +13,27 @@ const useStore = create((set) => ({
     zoomedInFrame: state.zoomedInFrame === frameId ? null : frameId
   })),
 
-  setLoadingState: (loading, progress) => { set({ loading, progress })},
+  setLoadingState: (loading, progress) => {
+    console.log("Updating loading state:", { loading, progress });
+    set((state) => ({ ...state, loading, progress })); // Ensure React registers change
+  },
+  
 
   loadingManager: new THREE.LoadingManager(
     () => {
-      setTimeout(() => set({ loading: false, progress: 100 }), 100); 
+      console.log("All assets loaded - setting loading to false");
+      set({ loading: false, progress: 100 });
     },
     (url, itemsLoaded, itemsTotal) => {
-      set({ progress: (itemsLoaded / itemsTotal) * 100 });
+      const newProgress = (itemsLoaded / itemsTotal) * 100;
+      console.log(`Loading progress: ${newProgress}%`);
+      set({ progress: newProgress });
     },
-
     (url) => {
       console.error(`Error loading: ${url}`);
-      set({ loading: false })
+      set({ loading: false });
     }
-  ),
-
+  )
 }));
 
 

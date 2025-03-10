@@ -19,26 +19,34 @@ export default function Scene({ width = 6, height = 4, depth = 5, thickness = 0.
 
   useEffect(() => {
     const loader = new THREE.TextureLoader(loadingManager);
+    
+    console.log("Loading started");
+    loadingManager.onStart = () => {
+      console.log("onStart triggered");
+      setLoadingState(true, 0);
+    };
 
-    // Initialize loading events
-    loadingManager.onStart = () => {};
     loadingManager.onProgress = (url, itemsLoaded, itemsTotal) => {
       const progress = (itemsLoaded / itemsTotal) * 100;
+      console.log(`Loading progress: ${progress}%`);
       setLoadingState(true, progress);
     };
+
     loadingManager.onLoad = () => {
-      setLoadingState(false, 100); // Complete loading
-    };
-    loadingManager.onError = () => {
-      setLoadingState(false, 100); // Stop loading on error
+      console.log("Loading complete");
+      setTimeout(() => setLoadingState(false, 100), 500);
     };
 
-    // Load textures
-    const mapTexture = loader.load(texturePaths.map, (texture) => {
+    loadingManager.onError = (url) => {
+      console.log(`Error loading ${url}`);
+      setLoadingState(false, 100);
+    };
+
+    loader.load(texturePaths.map, (texture) => {
       setTextures((prev) => ({ ...prev, map: texture }));
     });
 
-    const displacementTexture = loader.load(texturePaths.displacementMap, (texture) => {
+    loader.load(texturePaths.displacementMap, (texture) => {
       setTextures((prev) => ({ ...prev, displacementMap: texture }));
     });
 
@@ -56,16 +64,16 @@ export default function Scene({ width = 6, height = 4, depth = 5, thickness = 0.
     displacementMap: textures.displacementMap,
   };
 
-  // Check if textures are loaded before rendering the floor
   const texturesLoaded = textures.map && textures.displacementMap;
 
   return (
     <>
       <group position={[0, -1.2, 0]} rotation={[0, Math.PI / 6, 0]}>
-        {/* Floor */}
+        Floor
         {texturesLoaded && (
           <mesh receiveShadow position={[0, -thickness / 2, 0]}>
             <boxGeometry args={[width, thickness, depth]} />
+            <meshStandardMaterial />
             <meshStandardMaterial
               {...floorTextures}  
               roughness={0.8}
@@ -73,7 +81,7 @@ export default function Scene({ width = 6, height = 4, depth = 5, thickness = 0.
               metalness={0}
             />
           </mesh>
-        )}
+         )} 
 
         {/* Wall 1 */}
         <mesh position={[0, height / 2, -depth / 2 + thickness / 2]}>

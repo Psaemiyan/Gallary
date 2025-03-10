@@ -11,7 +11,7 @@ export default function Frame({ wallPosition, wallHeight }) {
   const toggleZoom = useStore((state) => state.toggleZoom);
 
   useEffect(() => {
-    setLoadingState(true, 0); // Start loading
+    setLoadingState(true, 0); 
   }, []);
 
   const framePositions = {

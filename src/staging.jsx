@@ -3,7 +3,7 @@ import useStore from "./useStore";
 
 export default function Staging() {
   const { loadingManager } = useStore.getState(); 
-  const { scene: plantScene } = useGLTF("./plant.glb", undefined, loadingManager);  
+  const { scene: plantScene } = useGLTF("./plant.glb", loadingManager);  
 
 
   return (
