@@ -15,8 +15,6 @@ export default function Loading() {
   useEffect(() => {
     if (!loading && loadingRef.current) {
       const material = loadingRef.current.material;
-      console.log("Material:", material);
-      console.log("Uniforms:", material.uniforms);
 
       if (material?.uniforms?.uAlpha) {
         gsap.to(material.uniforms.uAlpha, {
@@ -27,14 +25,12 @@ export default function Loading() {
             material.uniforms.uAlpha.needsUpdate = true;
             material.needsUpdate = true; 
             setRefresh((r) => r + 1); 
-            console.log("uAlpha value (inside gsap):", material.uniforms.uAlpha.value);
           }
         });
       }
     }
   }, [loading]);
 
-  // Alternative: Ensure updates every frame
   useFrame(() => {
     if (!loading && uniforms.uAlpha.value > 0) {
       uniforms.uAlpha.value = Math.max(0, uniforms.uAlpha.value - 0.02);

@@ -1,26 +1,52 @@
 import React from "react";
+import { FaVolumeMute, FaVolumeUp } from "react-icons/fa";
+import "./Audio.css";
 
 class Audio extends React.Component {
-  componentDidMount() {
-    // Ensure 'audio' is assigned to this.audio correctly
-    this.audio = new window.Audio('./audio.mp3'); // Adding 'window.' to explicitly use the Audio constructor
+  constructor(props) {
+    super(props);
+    this.state = {
+      isPlaying: false,  // Initially muted (audio paused)
+    };
+    this.audio = new window.Audio('./audio.mp3');
     this.audio.loop = true;
+  }
 
-    // Play the audio file
-    this.audio.play().catch(error => {
-      console.error("Error playing audio:", error);
-    });
+  componentDidMount() {
+    this.audio.oncanplay = () => {
+      console.log("Audio is ready");
+    };
   }
 
   componentWillUnmount() {
     if (this.audio) {
       this.audio.pause();
-      this.audio.currentTime = 0; // Optionally reset the audio to the beginning
+      this.audio.currentTime = 0;
     }
   }
 
+  toggleAudio = () => {
+    if (this.state.isPlaying) {
+      this.audio.pause();
+    } else {
+      this.audio.play().catch((error) => {
+        console.error("Error playing audio:", error);
+      });
+    }
+    this.setState((prevState) => ({
+      isPlaying: !prevState.isPlaying,
+    }));
+  };
+
   render() {
-    return null; // No UI needs to be rendered for this component
+    return (
+      <div className="audio-container">
+        {/* Toggle play/pause with a single icon */}
+        <button className="audio-icon" onClick={this.toggleAudio}>
+          {this.state.isPlaying ? <FaVolumeUp /> : <FaVolumeMute />}
+        </button>
+      </div>
+    );
   }
 }
 

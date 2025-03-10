@@ -13,10 +13,10 @@ import "./App.css";
 
 
 createRoot(document.getElementById("root")).render(<>
-  {/* <Audio /> */}
+  <Audio />
   <Canvas camera={{ position: [0, 2.2, 7.9], fov: 50 }}>
     <Perf position="top-left" />
-    <OrbitControls makeDefault />
+    {/* <OrbitControls makeDefault /> */}
     <CameraController /> 
     <ambientLight intensity={Math.PI / 2} />
     <spotLight position={[10, 10, 10]} angle={0.15} penumbra={1} decay={0} intensity={Math.PI} />
