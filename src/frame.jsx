@@ -32,12 +32,10 @@ export default function Frame({ wallPosition, wallHeight }) {
     ],
   };
 
-
   const handleClick = (frameId) => {
     setSelectedFrame(frameId); 
     toggleZoom(frameId);  
   };
-
 
   return (
     <>
