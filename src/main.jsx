@@ -14,13 +14,12 @@ import "./App.css";
 
 createRoot(document.getElementById("root")).render(<>
   <Audio />
-  <Canvas camera={{ position: [0, 2.2, 7.9], fov: 50 }}>
+  <Canvas camera={{ position: [0, 2.2, 7.9], fov: 50 }} shadows>
     <Perf position="top-left" />
-    {/* <OrbitControls makeDefault /> */}
+    <OrbitControls makeDefault />
     <CameraController /> 
     <ambientLight intensity={Math.PI / 2} />
-    <spotLight position={[10, 10, 10]} angle={0.15} penumbra={1} decay={0} intensity={Math.PI} />
-    {/* <pointLight position={[-10, -10, -10]} decay={0} intensity={Math.PI} /> */}
+    <directionalLight position={[-2, 5, 2]} intensity={1.5} castShadow={true} shadow-mapSize-width={1024} shadow-mapSize-height={1024}/>
     <Scene />
     <Glow />
     <Staging />

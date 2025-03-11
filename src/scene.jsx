@@ -77,14 +77,13 @@ export default function Scene({ width = 6, height = 4, depth = 5, thickness = 0.
         Floor
         {texturesLoaded && (
           <mesh receiveShadow position={[0, -thickness / 2, 0]}>
-            <boxGeometry args={[width, thickness, depth]} />
-            <meshStandardMaterial />
-            <meshStandardMaterial
-              {...floorTextures}  
-              roughness={0.8}
-              displacementScale={0}
-              metalness={0}
-            />
+          <boxGeometry args={[width, thickness, depth]} />
+          <meshStandardMaterial
+            {...floorTextures}  
+            roughness={0.8}
+            displacementScale={0}
+            metalness={0}
+          />
           </mesh>
          )} 
 

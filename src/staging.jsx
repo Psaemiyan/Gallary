@@ -10,11 +10,22 @@ export default function Staging() {
   const {scene: tableScene} = useGLTF('./table.glb', loadingManager)
 
 
+  plantScene.traverse((child) => {
+    if (child.isMesh) {
+      child.castShadow = true;
+    }
+  });
+
+  tableScene.traverse((child) => {
+    if(child.isMesh) {
+      child.castShadow = true
+    }
+  })
+
   return (
     <>
       <primitive
         object={plantScene}
-        castShadow
         scale={0.3}
         position={[3, -1.2, 0.4]}
         rotation={[0, Math.PI / 1.75, 0]}
@@ -27,12 +38,6 @@ export default function Staging() {
         rotation={[0, Math.PI / 6, 0]}
       />
 
-      {/* <primitive 
-      object={carpetScene}
-      scale={7.5}
-      position={[0.2, -1.2, 0.4]}
-      rotation={[0, Math.PI/ 6, 0]}
-      /> */}
 
       <primitive 
       object={tableScene}

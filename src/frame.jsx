@@ -41,7 +41,10 @@ export default function Frame({ wallPosition, wallHeight }) {
 
   return (
     <>
-      <group onClick={() => handleClick(1)}>
+      <group onClick={() => handleClick(1)}
+        onPointerOver={(e) => (document.body.style.cursor = "pointer")}
+        onPointerOut={(e) => (document.body.style.cursor = "auto")}
+      >
         <primitive
           object={nodes.wall_picture_1}
           scale={3.5}
@@ -50,7 +53,10 @@ export default function Frame({ wallPosition, wallHeight }) {
         />
       </group>
 
-      <group onClick={() => handleClick(2)}>
+      <group onClick={() => handleClick(2)}
+        onPointerOver={(e) => (document.body.style.cursor = "pointer")}
+        onPointerOut={(e) => (document.body.style.cursor = "auto")}
+      >
         <primitive
           object={nodes.wall_picture_2}
           scale={5}
@@ -59,7 +65,10 @@ export default function Frame({ wallPosition, wallHeight }) {
         />
       </group>
 
-      <group onClick={() => handleClick(3)}>
+      <group onClick={() => handleClick(3)}
+        onPointerOver={(e) => (document.body.style.cursor = "pointer")}
+        onPointerOut={(e) => (document.body.style.cursor = "auto")}
+      >
         <primitive
           object={nodes.wall_picture_3}
           scale={3.5}
