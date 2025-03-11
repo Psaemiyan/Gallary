@@ -2,7 +2,6 @@ import { create } from "zustand";
 import * as THREE from "three";
 
 const loadingBar = document.querySelector('.loading-bar')
-console.log(loadingBar)
 
 const useStore = create((set) => ({
   selectedFrame: null,
