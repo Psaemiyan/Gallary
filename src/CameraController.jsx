@@ -32,13 +32,13 @@ export default function CameraController() {
     if (zoomedInFrame === null) {
     gsap.to(camera.position, {
         x: -.2,
-        y: 0.8,
+        y: 2,
         z: 7.8,
         duration: 1.5,  
         ease: "power2.inOut",
         });
         gsap.to(camera.rotation, {
-        x: 0,
+        x: -Math.PI / 12,
         y: 0,
         z: 0,
         duration: 1.5,  
