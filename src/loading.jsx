@@ -39,7 +39,7 @@ export default function Loading() {
   });
 
   return (
-    <mesh ref={loadingRef}>
+    <mesh ref={loadingRef} renderOrder={9}>
       <planeGeometry args={[2, 2]} />
       <shaderMaterial
         blending={THREE.NormalBlending}

@@ -3,7 +3,7 @@ body,
 #root {
   height: 100%;
   margin: unset;
-  background-color: #FFFFE0;
-    /* background-color: #000000; */
+  /* background-color: #FFFFE0; */
+    background-color: #000000;
 
 }
