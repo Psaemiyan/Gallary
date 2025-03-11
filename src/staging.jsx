@@ -5,7 +5,7 @@ export default function Staging() {
   const { loadingManager } = useStore.getState(); 
   const {scene} = useGLTF('./couch_model.glb', loadingManager)
   const { scene: plantScene } = useGLTF("./plant.glb", loadingManager);  
-  const {scene: carpetScene} = useGLTF('./carpet.glb', loadingManager)
+  // const {scene: carpetScene} = useGLTF('./carpet.glb', loadingManager)
 
   const {scene: tableScene} = useGLTF('./table.glb', loadingManager)
 
@@ -27,17 +27,17 @@ export default function Staging() {
         rotation={[0, Math.PI / 6, 0]}
       />
 
-      <primitive 
+      {/* <primitive 
       object={carpetScene}
       scale={7.5}
       position={[0.2, -1.2, 0.4]}
       rotation={[0, Math.PI/ 6, 0]}
-      />
+      /> */}
 
-<primitive 
+      <primitive 
       object={tableScene}
       scale={1.7}
-      position={[0.2, -.4, 0.4]}
+      position={[0.2, -.4, 0.9]}
       rotation={[0, Math.PI / 6, 0]}
       />
 

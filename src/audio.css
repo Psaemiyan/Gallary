@@ -9,7 +9,7 @@
   .audio-icon {
     background: none;
     border: none;
-    color: rgb(52, 33, 24);
+    color: rgb(189, 184, 177);
     cursor: pointer;
     transition: transform 0.2s, opacity 0.2s;
     display: flex;

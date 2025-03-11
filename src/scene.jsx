@@ -19,18 +19,23 @@ export default function Scene({ width = 6, height = 4, depth = 5, thickness = 0.
 
   useEffect(() => {
     const loader = new THREE.TextureLoader(loadingManager);
-    
-    console.log("Loading started");
-    loadingManager.onStart = () => {
-      console.log("onStart triggered");
+      loadingManager.onStart = () => {
       setLoadingState(true, 0);
     };
 
     loadingManager.onProgress = (url, itemsLoaded, itemsTotal) => {
-      const progress = (itemsLoaded / itemsTotal) * 100;
-      console.log(`Loading progress: ${progress}%`);
-      setLoadingState(true, progress);
+      const progress = (itemsLoaded / itemsTotal);
+    
+      setLoadingState(true, progress * 100);
+    
+      const loadingBar = document.querySelector('.loading-bar');
+      if (loadingBar) {
+        loadingBar.style.transform = `scaleX(${progress})`;
+      } else {
+        console.warn("Loading bar not found!");
+      }
     };
+    
 
     loadingManager.onLoad = () => {
       console.log("Loading complete");

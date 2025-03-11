@@ -1,6 +1,8 @@
 import { create } from "zustand";
 import * as THREE from "three";
 
+const loadingBar = document.querySelector('.loading-bar')
+console.log(loadingBar)
 
 const useStore = create((set) => ({
   selectedFrame: null,
@@ -14,20 +16,17 @@ const useStore = create((set) => ({
   })),
 
   setLoadingState: (loading, progress) => {
-    console.log("Updating loading state:", { loading, progress });
-    set((state) => ({ ...state, loading, progress })); // Ensure React registers change
+    set((state) => ({ ...state, loading, progress })); 
   },
   
 
   loadingManager: new THREE.LoadingManager(
     () => {
-      console.log("All assets loaded - setting loading to false");
       set({ loading: false, progress: 100 });
     },
     (url, itemsLoaded, itemsTotal) => {
-      const newProgress = (itemsLoaded / itemsTotal) * 100;
-      console.log(`Loading progress: ${newProgress}%`);
-      set({ progress: newProgress });
+      const progressRatio = itemsLoaded / itemsTotal;
+      set({ progress: progressRatio });
     },
     (url) => {
       console.error(`Error loading: ${url}`);

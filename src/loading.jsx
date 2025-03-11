@@ -12,6 +12,8 @@ export default function Loading() {
   const uniforms = useRef({ uAlpha: { value: 1 } }).current; 
   const [, setRefresh] = useState(0); 
 
+  const loadingBar = document.querySelector('.loading-bar')
+
   useEffect(() => {
     if (!loading && loadingRef.current) {
       const material = loadingRef.current.material;
@@ -27,6 +29,8 @@ export default function Loading() {
             setRefresh((r) => r + 1); 
           }
         });
+        loadingBar.classList.add('ended')
+        loadingBar.style.transform = ''
       }
     }
   }, [loading]);

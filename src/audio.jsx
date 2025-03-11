@@ -6,7 +6,7 @@ class Audio extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      isPlaying: false,  // Initially muted (audio paused)
+      isPlaying: false,  
     };
     this.audio = new window.Audio('./audio.mp3');
     this.audio.loop = true;
@@ -14,7 +14,6 @@ class Audio extends React.Component {
 
   componentDidMount() {
     this.audio.oncanplay = () => {
-      console.log("Audio is ready");
     };
   }
 
@@ -41,7 +40,6 @@ class Audio extends React.Component {
   render() {
     return (
       <div className="audio-container">
-        {/* Toggle play/pause with a single icon */}
         <button className="audio-icon" onClick={this.toggleAudio}>
           {this.state.isPlaying ? <FaVolumeUp /> : <FaVolumeMute />}
         </button>
